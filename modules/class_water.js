@@ -1,4 +1,6 @@
-class water extends LivingCreature{
+//let random = require('./prog3/random');
+let LivingCreature = require('../LivingCreature');
+module.exports =class water extends LivingCreature{
     constructor(x, y) {
 
         super(x, y);
@@ -17,6 +19,11 @@ class water extends LivingCreature{
             [this.x + 1, this.y + 1]
         ];
     }
+    random(){
+        let found = this.chooseCell(0);
+        let result = Math.floor(Math.random()*found.length)
+        return found[result];
+        }
     chooseCell(char) {
 
         this.getNewDirections();
@@ -26,7 +33,7 @@ class water extends LivingCreature{
     }
 
     mul() { 
-        let newCell = random(this.chooseCell(0).concat(this.chooseCell(1)));
+        let newCell = this.random(this.chooseCell(0).concat(this.chooseCell(1)));
         if (newCell) 
         {
             let x = newCell[0];
@@ -49,7 +56,7 @@ class water extends LivingCreature{
     }
     eat() {
         this.getNewDirections();
-        let newCell = random((this.chooseCell(4)).concat(this.chooseCell(2).concat(this.chooseCell(1))));
+        let newCell = this.random((this.chooseCell(4)).concat(this.chooseCell(2).concat(this.chooseCell(1))));
         if (newCell)
          {
             this.resource += 2;
@@ -86,7 +93,7 @@ class water extends LivingCreature{
     }
     move(){
         this.resource--;
-        let newCell = random(this.chooseCell(0));
+        let newCell = this.random(this.chooseCell(0));
         if (newCell){
             let x = newCell[0];
             let y = newCell[1];

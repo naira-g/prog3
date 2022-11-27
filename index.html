@@ -1,6 +1,7 @@
 <html>
 
 <head>
+  
     <meta charset="utf8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -25,20 +26,47 @@
     </style>
     </style>
 </head>
+<style>
+    .button {
+  background-color: #4c63af; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+</style>
 
 <body>
+    
+     
+
     <table class="table table-hover">
         <thead>
             <tr>
-                <h1>Ծրագրավորում II Երևան</h1>
+                <h1>Ծրագրավորում III Երևան</h1>
             </tr>
             <tr>
                 <h1>Նաիրա Ղուլղազարյան</h1>
             </tr>
             <tr>
+                <h2><center>Ընտրեք եղանակը</center> </h2>
+            </tr>
+            <tr>
+                <center>
+                    <p><button><h3 id="winter">Ձմեռ</h3> </p>
+                        <p><button><h3 id="spring"> Գարուն</h3> </p>
+                            <p><button><h3 id="summer">Ամառ</h3> </p>
+                                <p><button><h3 id ="autumn">Աշուն</h3> </p>
+                </center>
+            </tr>
+            <tr>
                 <th scope="col">#</th>
                 <th scope="col">Գույն</th>
                 <th scope="col">Նկարագրություն</th>
+                <th scope="col">Ստատիստիկա</th>
             </tr>
         </thead>
         <tbody>
@@ -48,18 +76,22 @@
                 <td>Կանաչը խոտն է, որը բազմանում է 7 ցիկլը մեկ, մահանում է երբ նրան ուտում է խոտակերը կամ գիշատիչը, կամ
                     այրում է
                     կրակը կամ արմատախիլ է անում ջուրը</td>
+                    <th scope="row" id = "grass"></th>
             </tr>
             <tr>
                 <th scope="row">2</th>
                 <td scope="row" style="background-color:yellow;"></td>
                 <td>Դեղինը խոտակերն է, որը բազմանում է 6 հատ խոտ ուտելուց հետո և մահանում է 6 հատ չուտելուց հետո, կամ
                     երբ նրան ուտում է գիշատիչը, կամ երբ նրան այրում է կրակը, կամ էլ երբ խորտակվում է ջրում</td>
+                    <th scope="row" id = "grassEater"></th>
             </tr>
             <tr>
                 <th scope="row">3</th>
                 <td scope="row" style="background-color:red;"></td>
                 <td>Կարմիրը գիշատիչն է, որը բազմանում է 3 հատ խոտ ուտելուց հետո կամ 3 հատ խոտակեր ուտելուց հետո կամ էլ
                     ջուր խմելուց հետո և մահանում է 3 հատ չուտելուց հետո, կամ երբ նրան այրում է կրակը</td>
+                    <th scope="row" id = "predator"></th>
+                    
             </tr>
             <tr>
                 <th scope="row">4</th>
@@ -67,6 +99,8 @@
                 <td>Մանուշակագույնը կրակն է, որը բազմանում է 3 ցիկլը մեկ` խոտ ուտելուց, խոտակեր ուտելուց, կամ 
                     գիշատիչ ուտելուց հետո և մահանում է 2 հատ չուտելուց հետո, կամ
                     երբ նրան հանգցնում է ջուրը</td>
+                    <th scope="row" id = "fire"></th>
+                
             </tr>
             <tr>
                 <th scope="row">5</th>
@@ -74,17 +108,64 @@
                 <td>Կապույտը ջուրն է, որը բազմանում է 5 ցիկլը մեկ` խոտ արմատախիլ անելեուց հետո, խոտակեր խորտակելուց հետո
                     և մահանում է 10 հատ չուտելուց հետո, կամ
                     երբ նրան խմում է գիշատիչը</td>
+                    <th scope="row" id = "water"></th>
             </tr>
         </tbody>
     </table>
+
+<p id ="p"></p>
+    <p><button class="button" onclick="background1()"><h3>Thunder</h3></button>
+        <button class="button" onclick="stop()"><h3>Stop</h3></button>
+    </p>
+    
+
+    <div class="back-frem">
+        <div class="back-chang" onclick="background1()"></div>
+    </div>
+
+    <div class="back-frem">
+        <div class="back-chang" onclick="stop()"></div>
+    </div>
+    
+    
+    <script>
+         function background1() {
+        document.querySelector('body').style.background = "url('lightning-thunder.gif')";
+    }
+    function stop() {
+        document.querySelector('body').style.background = "url('')";
+    }
+
+
+
+
+
+    ///json
+  fetch("startAnalysis.json")
+  .then(response => response.json())
+  .then(data =>{
+    document.querySelector("#grass").innerText = data.grass
+    document.querySelector("#grassEater").innerText = data.grassEater
+    document.querySelector("#predator").innerText = data.predator
+    document.querySelector("#fire").innerText = data.fire
+    document.querySelector("#water").innerText = data.water
+  })
+
+  </script>
+
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-    <script src="LivingCreature.js"></script>
+    <!-- <script src="LivingCreature.js"></script>
     <script src="class.js"></script>
     <script src="class_grassEater.js"></script>
     <script src="class_predator.js"></script>
     <script src="class_fire.js"></script>
-    <script src="class_water.js"></script>
+    <script src="class_water.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>  
+    
 </body>
 
 </html>

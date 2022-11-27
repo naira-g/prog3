@@ -1,4 +1,6 @@
-class GrassEater extends LivingCreature {
+let LivingCreature = require('../LivingCreature');
+
+module.exports = class GrassEater extends LivingCreature {
     constructor(x, y) {
 
         super(x, y);
@@ -17,6 +19,11 @@ class GrassEater extends LivingCreature {
             [this.x + 1, this.y + 1]
         ];
     }
+    random(){
+let found = this.chooseCell(0);
+let result = Math.floor(Math.random()*found.length)
+return found[result];
+}
     chooseCell(char) {
 
         this.getNewDirections();
@@ -28,7 +35,7 @@ class GrassEater extends LivingCreature {
 
     
     mul() {
-        let newCell = random(this.chooseCell(0));
+        let newCell = this.random(this.chooseCell(0));
         if (newCell) {
             let x = newCell[0];
             let y = newCell[1];
@@ -48,7 +55,7 @@ class GrassEater extends LivingCreature {
     }
     eat() {
         this.getNewDirections();
-        let newCell = random(this.chooseCell(1));
+        let newCell = this.random(this.chooseCell(1));
         if (newCell) {
             this.energy += 5;
             let x = newCell[0];                                            //maychange
@@ -74,7 +81,7 @@ class GrassEater extends LivingCreature {
     }
     move() {
         this.energy--;
-        let newCell = random(this.chooseCell(0));
+        let newCell = this.random(this.chooseCell(0));
         if (newCell) {
             let x = newCell[0];
             let y = newCell[1];
